@@ -1,3 +1,4 @@
+ml_env/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -14,6 +15,7 @@ dist/
 downloads/
 eggs/
 .eggs/
+.egg-info
 lib/
 lib64/
 parts/
@@ -216,3 +218,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+
