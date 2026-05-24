@@ -1,3 +1,4 @@
+*.pkl
 catboost_info/
 ml_env/
 # Byte-compiled / optimized / DLL files
