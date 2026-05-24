@@ -1,5 +1,5 @@
-artifacts/
-*.pkl
+
+
 
 catboost_info/
 ml_env/
