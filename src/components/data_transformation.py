@@ -50,7 +50,7 @@ class DataTransformation:
 
             logging.info("Numerical columns standard scaling completed")
 
-            logging.info("Categorical columns encoding complete")
+            logging.info("Categorical columns encoding completed")
 
             preprocessor=ColumnTransformer(
                 [
