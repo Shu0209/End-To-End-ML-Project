@@ -44,14 +44,70 @@ class ModelTrainer:
                 "Linear Regression":LinearRegression(),
                 "Decision Tree":DecisionTreeRegressor(),
                 "K NearestNeighbors":KNeighborsRegressor(),
-                "CatBoost Regresssor":CatBoostRegressor(verbose=False),
+                "CatBoost Regressor":CatBoostRegressor(verbose=False),
                 "XGBoost":XGBRegressor(),
                 "Random Forest":RandomForestRegressor(),
                 "Gradient Boosting":GradientBoostingRegressor(),
                 "AdaBoost":AdaBoostRegressor()
             }
 
-            model_report:dict=evaluate_models(x_train=x_train,y_train=y_train,x_test=x_test,y_test=y_test,models=models)
+            params={
+                "Linear Regression":{   
+                },
+                "Decision Tree":{
+                    "criterion": ["squared_error", "friedman_mse"],
+                    "splitter": ["best", "random"],
+                    "max_depth": [None, 5, 10, 15, 20],
+                    "min_samples_split": [2, 5, 10],
+                    "min_samples_leaf": [1, 2, 4]
+                },
+                "K NearestNeighbors":{
+                    "n_neighbors": [3, 5, 7, 9, 11],
+                    "weights": ["uniform", "distance"],
+                    "metric": ["euclidean", "manhattan", "minkowski"]
+                },
+                "CatBoost Regressor":{
+                    "iterations": [100, 200],
+                    "learning_rate": [0.01, 0.05, 0.1],
+                    "depth": [4, 6, 8],
+                    "l2_leaf_reg": [1, 3, 5, 7]
+                },
+                "XGBoost":{
+                    "n_estimators": [100, 200],
+                    "learning_rate": [0.01, 0.05, 0.1],
+                    "max_depth": [3, 5, 7],
+                    "subsample": [0.7, 0.8, 1.0],
+                    "colsample_bytree": [0.7, 0.8, 1.0]
+                },
+                "Random Forest":{
+                    "n_estimators": [100, 200],
+                    "max_depth": [None, 5, 10, 20],
+                    "min_samples_split": [2, 5, 10],
+                    "min_samples_leaf": [1, 2, 4],
+                    "max_features": ["sqrt", "log2"]
+                },
+                "Gradient Boosting":{
+                    "n_estimators": [100, 200],
+                    "learning_rate": [0.01, 0.05, 0.1],
+                    "max_depth": [3, 5, 7],
+                    "min_samples_split": [2, 5, 10],
+                    "min_samples_leaf": [1, 2, 4]
+                },
+                "AdaBoost":{
+                    "n_estimators": [50, 100, 200],
+                    "learning_rate": [0.01, 0.05, 0.1, 1],
+                    "loss": ["linear", "square", "exponential"]
+                }
+
+
+            }
+
+            logging.info("Starting model evaluation with hyperparameter tuning")
+
+
+
+
+            model_report:dict=evaluate_models(x_train=x_train,y_train=y_train,x_test=x_test,y_test=y_test,models=models,param=params)
 
 
             best_model_score=max(model_report.values())
