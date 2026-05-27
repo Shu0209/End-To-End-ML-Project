@@ -8,10 +8,7 @@ from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 application = Flask(__name__)
 app = application
 
-# Add this — sends Flask errors to gunicorn log
-gunicorn_logger = logging.getLogger('gunicorn.error')
-application.logger.handlers = gunicorn_logger.handlers
-application.logger.setLevel(gunicorn_logger.level)
+
 
 @app.route('/')
 def index():
@@ -42,4 +39,4 @@ def predict_datapoint():
             raise e
 
 if __name__ == "__main__":
-    application.run(host="0.0.0.0", debug=False)
+    application.run(host="0.0.0.0", debug=True)
