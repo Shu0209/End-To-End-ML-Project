@@ -11,7 +11,7 @@ An end-to-end machine learning project that predicts a student's **Math Score** 
 Clone the repository
 
 ```bash
-git clone https://github.com/Shu0209/Student-Performance-Predictor
+git clone https://github.com/Shu0209/End-To-End-ML-Project
 ```
 
 ### STEP 01 - Create a conda environment after opening the repository
